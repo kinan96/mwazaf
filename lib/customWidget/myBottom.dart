@@ -10,7 +10,9 @@ class MyBottom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: function,
+      onTap: () async {
+        await function();
+      },
       child: Container(
         width: width(context),
         height: height(context) * 0.07,

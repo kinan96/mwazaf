@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:get/get.dart' as getlib;
 import 'package:mwazaf_app/customWidget/myBottom.dart';
 import 'package:mwazaf_app/customWidget/myTextForm.dart';
 import 'package:mwazaf_app/customWidget/serverGate.dart';
@@ -45,13 +44,14 @@ class _LoginScreenState extends State<LoginScreen> {
       url: "login",
     );
     LoginModel loginModel;
-    if (resp.data['data'] != null && resp.data['data'].length > 0)
+    if (resp.data['data'] != null && resp.data['data'].length > 0) {
       loginModel = LoginModel.fromJson(resp.data, password: password);
-    if (loginModel != null &&
-        (loginModel.value || resp.data['value'] == null)) {
-      userController.changeUser(loginModel.data);
-      await addSharedString("login", loginModelToJson(loginModel));
-      getlib.Get.off(Home());
+      if (loginModel != null) {
+        userController.changeUser(loginModel.data);
+        await addSharedString("login", loginModelToJson(loginModel));
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (context) => Home()));
+      }
     }
   }
 

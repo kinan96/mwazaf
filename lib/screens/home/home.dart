@@ -39,14 +39,14 @@ class _HomeState extends State<Home> {
         await serverGate.postData(
           url: "attendance",
           body: {"id": qr},
-          onError: (b) {
-            EasyLoading.dismiss();
-          },
-          onSuccess: (body) {
-            EasyLoading.dismiss();
-            Toast.show(body['data'], getlib.Get.context);
-            return;
-          },
+          // onError: (b) {
+          //   EasyLoading.dismiss();
+          // },
+          // onSuccess: (body) {
+          //   EasyLoading.dismiss();
+          //   Toast.show(body['data'], getlib.Get.context);
+          //   return;
+          // },
           headers: {"Authorization": "Bearer${userController.user.token}"},
         );
       } catch (e) {

@@ -106,11 +106,11 @@ Widget listItem(BuildContext context, Item item) {
                                                   _reason.text.isNotEmpty)
                                                 await serverGate.postData(
                                                   url: "add-absence",
-                                                  onSuccess: (body) {
-                                                    Toast.show(body['data'],
-                                                        Get.context);
-                                                    Get.back();
-                                                  },
+                                                  // onSuccess: (body) {
+                                                  //   Toast.show(body['data'],
+                                                  //       Get.context);
+                                                  //   Get.back();
+                                                  // },
                                                   body: {
                                                     "info": _reason.text,
                                                     "user_id": item.id
@@ -120,6 +120,7 @@ Widget listItem(BuildContext context, Item item) {
                                                         "Bearer${userController.user.token}"
                                                   },
                                                 );
+                                              Get.back();
                                             },
                                             child: Text("حفظ"))
                                       ],

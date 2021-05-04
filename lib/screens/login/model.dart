@@ -62,18 +62,20 @@ class UserData {
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
         id: int.tryParse(json["id"].toString()),
-        name: json["name"],
-        phone: json["phone"],
-        email: json["email"],
+        name: json["name"].toString(),
+        phone: json["phone"].toString(),
+        email: json["email"].toString(),
         userId: int.tryParse(json["userID"].toString()),
         userCode: int.tryParse(json["user_code"].toString()),
         isActive: int.tryParse(json["is_active"].toString()),
         governorate: int.tryParse(json["governorate"].toString()),
         hasSecuritySkills: int.tryParse(json["has_security_skills"].toString()),
-        registerAt: DateTime.parse(json["register_at"]),
-        role: json["role"],
-        gender: json["gender"],
-        token: json["token"],
+        registerAt: json["register_at"] != null
+            ? DateTime.parse(json["register_at"].toString())
+            : null,
+        role: json["role"].toString(),
+        gender: json["gender"].toString(),
+        token: json["token"].toString(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -86,8 +88,9 @@ class UserData {
         "is_active": isActive,
         "governorate": governorate,
         "has_security_skills": hasSecuritySkills,
-        "register_at":
-            "${registerAt.year.toString().padLeft(4, '0')}-${registerAt.month.toString().padLeft(2, '0')}-${registerAt.day.toString().padLeft(2, '0')}",
+        "register_at": registerAt == null
+            ? null
+            : "${registerAt.year.toString().padLeft(4, '0')}-${registerAt.month.toString().padLeft(2, '0')}-${registerAt.day.toString().padLeft(2, '0')}",
         "role": role,
         "gender": gender,
         "token": token,

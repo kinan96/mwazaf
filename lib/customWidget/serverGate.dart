@@ -29,8 +29,8 @@ class ServerGate {
     bool dontShowmsg,
     bool dontShowLoading,
     Map<String, dynamic> body,
-    Function(Map<String, dynamic> body) onSuccess,
-    Function(Map<String, dynamic> body) onError,
+    // Function(Map<String, dynamic> body) onSuccess,
+    // Function(Map<String, dynamic> body) onError,
   }) async {
     // remove nulls from body
     body.removeWhere(
@@ -49,10 +49,11 @@ class ServerGate {
         options: Options(
             headers: headers,
             validateStatus: (status) {
-              if (status == 401) {
-                removeAllShared();
-                getlib.Get.offAll(LoginScreen());
-              }
+              // if (status == 401) {
+              //   removeAllShared();
+              //   Navigator.of(getlib.Get.context).pushReplacement(
+              //       MaterialPageRoute(builder: (context) => LoginScreen()));
+              // }
               return true;
             }),
       );
@@ -66,24 +67,25 @@ class ServerGate {
               getlib.Get.context);
       }
       print(response.statusCode);
-      if (response.statusCode == 200 && onSuccess != null)
-        try {
-          await onSuccess(response.data);
-        } catch (e) {
-          print(e);
-        }
-      else if (response.statusCode == 401) {
-        removeAllShared();
-        getlib.Get.offAll(LoginScreen());
-      } else {
-// on error
-        if (onError != null)
-          try {
-            await onError(response.data);
-          } catch (e) {
-            print(e);
-          }
-      }
+//       if (response.statusCode == 200 && onSuccess != null)
+//         try {
+//           await onSuccess(response.data);
+//         } catch (e) {
+//           print(e);
+//         }
+//       else if (response.statusCode == 401) {
+//         removeAllShared();
+//         Navigator.of(getlib.Get.context).pushReplacement(
+//             MaterialPageRoute(builder: (context) => LoginScreen()));
+//       } else {
+// // on error
+//         if (onError != null)
+//           try {
+//             await onError(response.data);
+//           } catch (e) {
+//             print(e);
+//           }
+//       }
       return response;
     } on DioError catch (e) {
       print(e);
@@ -124,7 +126,8 @@ class ServerGate {
             validateStatus: (status) {
               if (status == 401) {
                 removeAllShared();
-                getlib.Get.offAll(LoginScreen());
+                Navigator.of(getlib.Get.context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               }
               return true;
             }),
@@ -137,11 +140,13 @@ class ServerGate {
           Toast.show(response.data['msg'] ?? response.data['msgs'],
               getlib.Get.context);
       }
-      if (response.statusCode == 200 && onSuccess != null)
+      if (response.statusCode == 200 ||
+          response.statusCode == 201 && onSuccess != null)
         await onSuccess(response.data);
       else if (response.statusCode == 401) {
         removeAllShared();
-        getlib.Get.offAll(LoginScreen());
+        Navigator.of(getlib.Get.context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LoginScreen()));
       } else {
 // on error
         if (onError != null) await onError(response.data);
@@ -178,7 +183,8 @@ class ServerGate {
             validateStatus: (status) {
               if (status == 401) {
                 removeAllShared();
-                getlib.Get.offAll(LoginScreen());
+                Navigator.of(getlib.Get.context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               }
               return true;
             }),
@@ -196,7 +202,8 @@ class ServerGate {
         await onSuccess(response.data);
       else if (response.statusCode == 401) {
         removeAllShared();
-        getlib.Get.offAll(LoginScreen());
+        Navigator.of(getlib.Get.context).pushReplacement(
+            MaterialPageRoute(builder: (context) => LoginScreen()));
       } else {
 // on error
         if (onError != null) await onError(response.data);
