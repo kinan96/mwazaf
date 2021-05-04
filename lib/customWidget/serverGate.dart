@@ -17,8 +17,8 @@ class ServerGate {
   // Dio dio = Dio();
   Dio get dio {
     var _dio = Dio();
-    _dio.options.sendTimeout = 60000;
-    _dio.options.receiveTimeout = 60000;
+    // _dio.options.sendTimeout = 60000;
+    // _dio.options.receiveTimeout = 60000;
 
     return _dio;
   }
@@ -87,7 +87,7 @@ class ServerGate {
       return response;
     } on DioError catch (e) {
       print(e);
-      Toast.show("توجد مشكلة في الإتصال", getlib.Get.context);
+      // Toast.show("توجد مشكلة في الإتصال", getlib.Get.context);
       EasyLoading.dismiss();
 
       return null;
@@ -149,7 +149,7 @@ class ServerGate {
       return response;
     } on DioError catch (err) {
       // if (err.type == DioErrorType.CONNECT_TIMEOUT)
-      Toast.show("توجد مشكلة في الإتصال", getlib.Get.context);
+      // Toast.show("توجد مشكلة في الإتصال", getlib.Get.context);
       EasyLoading.dismiss();
 
       print(err);
@@ -204,7 +204,7 @@ class ServerGate {
       return response;
     } on DioError catch (err) {
       print(err);
-      Toast.show("توجد مشكلة في الإتصال", getlib.Get.context);
+      // Toast.show("توجد مشكلة في الإتصال", getlib.Get.context);
       EasyLoading.dismiss();
       return null;
     }

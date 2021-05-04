@@ -60,14 +60,13 @@ class _HomeState extends State<Home> {
 
   _getHomeModel(String next) async {
     ServerGate serverGate = ServerGate();
-    print(userController.user.token);
     Response response = await serverGate.getData(
         url: "index",
         dontShowLoading: true,
         dontShowmsg: true,
         headers: {"Authorization": "Bearer${userController.user.token}"},
         nextURl: next);
-    print(response.requestOptions.path);
+    print(response.data);
     // try {
     if (response != null &&
         response.data != null &&
@@ -129,7 +128,8 @@ class _HomeState extends State<Home> {
                           faildText: "لا توجد نتائج أخرى",
                           onLoading: () async {
                             if (_homeModel != null &&
-                                _homeModel.users.paginate.nextPageUrl != null)
+                                _homeModel.users.paginate.nextPageUrl != null &&
+                                _homeModel.users.paginate.nextPageUrl != "")
                               await _getHomeModel(
                                   _homeModel.users.paginate.nextPageUrl);
 
