@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
       loginModel = LoginModel.fromJson(resp.data, password: password);
       if (loginModel != null) {
         userController.changeUser(loginModel.data);
-        await addSharedString("login", loginModelToJson(loginModel));
+        // await addSharedString("login", loginModelToJson(loginModel));
         Navigator.of(context)
             .pushReplacement(MaterialPageRoute(builder: (context) => Home()));
       }

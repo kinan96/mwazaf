@@ -13,7 +13,6 @@ import 'package:mwazaf_app/style/colors.dart';
 import 'package:mwazaf_app/style/sizes.dart';
 import 'package:mwazaf_app/customWidget/mySmartRefresher.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:toast/toast.dart';
 import 'homeModel.dart';
 
 class Home extends StatefulWidget {
