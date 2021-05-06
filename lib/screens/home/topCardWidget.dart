@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mwazaf_app/style/colors.dart';
 import 'package:mwazaf_app/style/sizes.dart';
 
-Widget topCard(BuildContext context) {
+Widget topCard(BuildContext context, int count) {
   return Container(
     width: width(context),
     child: Card(
@@ -10,6 +10,9 @@ Widget topCard(BuildContext context) {
         padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         child: Row(
           children: [
+            SizedBox(
+              width: 10,
+            ),
             Icon(
               Icons.wb_sunny,
               size: 30,
@@ -31,60 +34,28 @@ Widget topCard(BuildContext context) {
                   SizedBox(
                     height: 5,
                   ),
-                  Text('السبت 20 ابريل 2021'),
+                  Text(DateTime.now().toIso8601String().split("T")[0]),
                 ],
               ),
             ),
-            SizedBox(width: width(context) * 0.09),
+            Spacer(),
             Container(
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 5),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Column(
                   children: [
-                    Text(
-                      '24',
-                      style: TextStyle(
-                        color: AppColors.blue,
-                        fontSize: 18,
-                      ),
-                    ),
+                    count == null
+                        ? CircularProgressIndicator()
+                        : Text(
+                            '$count',
+                            style: TextStyle(
+                              color: AppColors.blue,
+                              fontSize: 18,
+                            ),
+                          ),
                     Text('موظف'),
                   ],
                 ),
-              ),
-            ),
-            SizedBox(
-              width: width(context) * 0.02,
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Text(
-                    '24',
-                    style: TextStyle(
-                      color: AppColors.blue,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text('موظف'),
-                ],
-              ),
-            ),
-            SizedBox(
-              width: width(context) * 0.02,
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Text(
-                    '24',
-                    style: TextStyle(
-                      color: AppColors.blue,
-                      fontSize: 18,
-                    ),
-                  ),
-                  Text('موظف'),
-                ],
               ),
             ),
           ],

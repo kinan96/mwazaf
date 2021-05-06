@@ -30,25 +30,28 @@ class LoginModel {
 }
 
 class UserData {
-  UserData({
-    this.id,
-    this.name,
-    this.phone,
-    this.email,
-    this.userId,
-    this.userCode,
-    this.isActive,
-    this.governorate,
-    this.hasSecuritySkills,
-    this.registerAt,
-    this.role,
-    this.gender,
-    this.token,
-  });
+  UserData(
+      {this.id,
+      this.name,
+      this.phone,
+      this.email,
+      this.image,
+      this.userId,
+      this.userCode,
+      this.isActive,
+      this.governorate,
+      this.hasSecuritySkills,
+      this.registerAt,
+      this.role,
+      this.gender,
+      this.token,
+      this.avatar});
 
   int id;
   String name;
   String phone;
+  String avatar;
+  String image;
   String email;
   int userId;
   int userCode;
@@ -64,6 +67,8 @@ class UserData {
         id: int.tryParse(json["id"].toString()),
         name: json["name"].toString(),
         phone: json["phone"].toString(),
+        avatar: json["avatar"],
+        image: json["image"],
         email: json["email"].toString(),
         userId: int.tryParse(json["userID"].toString()),
         userCode: int.tryParse(json["user_code"].toString()),
@@ -83,7 +88,9 @@ class UserData {
         "name": name,
         "phone": phone,
         "email": email,
+        "image": image,
         "userID": userId,
+        "avatar": avatar,
         "user_code": userCode,
         "is_active": isActive,
         "governorate": governorate,

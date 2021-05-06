@@ -72,6 +72,11 @@ class _HomeState extends State<Home> {
         response.data['data'] != null)
       setState(() {
         _homeModel = HomeModel.fromJson(response.data['data']);
+        try {
+          _count = _homeModel.users.items.length;
+        } catch (e) {
+          _count = 0;
+        }
         if (next != null) {
           if (_homeModel.users.items == null ||
               _homeModel.users.items.length == 0)
@@ -85,6 +90,7 @@ class _HomeState extends State<Home> {
   }
 
   HomeModel _homeModel;
+  int _count;
   List<Item> _usersModels;
   RefreshController _refreshController = RefreshController();
   ScrollController _scrollController = ScrollController();
@@ -109,7 +115,7 @@ class _HomeState extends State<Home> {
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Column(
                   children: [
-                    topCard(context),
+                    topCard(context, _count),
                     SizedBox(
                       height: height(context) * 0.02,
                     ),

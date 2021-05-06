@@ -25,7 +25,8 @@ Widget listItem(BuildContext context, Item item) {
                   children: [
                     CircleAvatar(
                       backgroundColor: Colors.red,
-                      // child: Image.network(item.image),
+                      foregroundImage:
+                          item.image == null ? null : NetworkImage(item.image),
                       radius: 25,
                     ),
                     SizedBox(
