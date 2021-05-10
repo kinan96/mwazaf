@@ -15,7 +15,8 @@ PreferredSizeWidget myAppBar(BuildContext context, String title, String image) {
         ),
         Spacer(),
         CircleAvatar(
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.grey,
+          backgroundImage: AssetImage("assets/images/user.png"),
           foregroundImage: userController.user.avatar == null &&
                   userController.user.image == null
               ? null

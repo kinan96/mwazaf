@@ -168,6 +168,7 @@ class ServerGate {
     String nextURl,
     Map<String, dynamic> headers,
     bool dontShowmsg,
+    Map<String, dynamic> parameters,
     bool dontShowLoading,
     Map<String, dynamic> body,
     Function(Map<String, dynamic> body) onSuccess,
@@ -178,6 +179,7 @@ class ServerGate {
         EasyLoading.show(status: '');
       Response response = await dio.get(
         nextURl != null && nextURl != "" ? nextURl : "$baseUrl/$url",
+        queryParameters: parameters,
         options: Options(
             headers: headers,
             validateStatus: (status) {
@@ -189,7 +191,7 @@ class ServerGate {
               return true;
             }),
       );
-
+      print(response.requestOptions.queryParameters);
       if (dontShowLoading == null || dontShowLoading == false)
         EasyLoading.dismiss();
       if (!(dontShowmsg != null && dontShowmsg == true)) {

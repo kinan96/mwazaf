@@ -11,14 +11,23 @@ String homeModelToJson(HomeModel data) => json.encode(data.toJson());
 class HomeModel {
   HomeModel({
     this.noAttendances,
+    this.count,
+    this.attendances,
+    this.absence,
     this.users,
   });
 
   int noAttendances;
+  int count;
+  int attendances;
+  int absence;
   Users users;
 
   factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
         noAttendances: json["no_attendances"],
+        count: int.tryParse(json['count'].toString()) ?? 0,
+        attendances: int.tryParse(json['attendances'].toString()) ?? 0,
+        absence: int.tryParse(json['absence'].toString()) ?? 0,
         users: json['users'] == null || json['users'].length == 0
             ? Users(
                 items: [],

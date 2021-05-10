@@ -157,7 +157,7 @@ String passwordValidate(v) {
   if (v.isEmpty)
     return "كلمة المرور لا يمكن أن تكون فارغة";
   else if (v.length < 6)
-    return "كلمة المرور يجب ألا تقل عن 8 أحرف";
+    return "كلمة المرور يجب ألا تقل عن 6 أحرف";
   else
     return null;
 }

@@ -24,7 +24,8 @@ Widget listItem(BuildContext context, Item item) {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CircleAvatar(
-                      backgroundColor: Colors.red,
+                      backgroundColor: Colors.grey,
+                      backgroundImage: AssetImage("assets/images/user.png"),
                       foregroundImage:
                           item.image == null ? null : NetworkImage(item.image),
                       radius: 25,
